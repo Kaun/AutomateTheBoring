@@ -1,0 +1,26 @@
+#! python3
+# #Программа находит в буфере обмена все эл.адреса и телефоны
+import pyperclip
+import sys
+import re
+#kaun@gmail.ru bla bla
+#kaun@mail.com
+#Скопированный текст сохраняем в переменной и
+#1qw1nikitin@imf.ru
+# создаем список
+copy_text = pyperclip.paste()
+# ls = copy_text.split()
+print(copy_text)
+regexEmail = re.compile(r'([a-zA-Z0-9._%+-]+@[a-z.]+\.[a-z]{2,4})')
+matchEmail = regexEmail.findall(copy_text)
+print(matchEmail)
+#(35191)5-50-49
+#(351)5-50-49
+#3519155049
+
+regexPhone = re.compile(r'((\d{3,5}|(\(\d{3,5}\)))?(\s|-)?(\d)(\s|-)?(\d{2})(\s|-)?(\d{2}))', re.VERBOSE)
+matchPhone = regexPhone.findall(copy_text)
+print(matchPhone)
+
+# for i in matchPhone:
+#     print(i[len(i)-1])

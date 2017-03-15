@@ -1,0 +1,53 @@
+#Реализована функция вывода списков в читаемом виде по столбцам
+
+tableData = [['apples', 'orangessss', 'cherries', 'banana'],
+             ['Alice', 'Bodddb', 'Carol', 'David'],
+             ['dogs', 'cats', 'mooseffff', 'goose'],
+             ['dogs', 'cats', 'mooseffff', 'goose']]
+
+
+# for k in tableData:
+# print(tableData[0][1])
+# print(len(tableData))
+# for v in range(0, 1):
+#     for k in range(0, len(tableData[v])):
+#         print(tableData[v][k].rjust(8) + '  ' + tableData[v+1][k] + '  ' + tableData[v+2][k])
+
+# global n
+# n = 0
+
+# argLs = []
+# for i in range(len(tableData)):
+#     for g in range(len(tableData[i])):
+#         max[g] = len(tableData[i][g])
+#     print(max)
+
+def printTable(tableData):
+    max = {}
+    ls = {}
+# Определяем самое длинное слово в каждом списке
+    for i in range(len(tableData)):
+        for k in range(len(tableData[i])):
+            max[tableData[i][k]] = len(tableData[i][k])
+            ls.setdefault(i, 0)
+            if len(tableData[i][k]) > ls[i]:
+                ls[i] = len(tableData[i][k])
+
+    argLs = list(ls.values())
+
+# print(max)
+# print(ls)
+# print(argLs)
+
+# Выводим информацию выравнивая каждый столбец справа
+    for m in range(len(tableData[0])):
+        for n in range(len(tableData)):
+            print(tableData[n][m].rjust(argLs[n], '.'), end='\t')
+            if n == (len(tableData) - 1):
+                print()
+
+
+
+    # for v, m in max.items():
+    #     print(v, m, end='\n')
+printTable(tableData)
